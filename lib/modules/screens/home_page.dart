@@ -14,13 +14,29 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
  
-  
+   final Color appBarColor = Colors.blue[400];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: Text("Accueil"),appBar: AppBar(),),
-      body: SafeArea(child: Center(),),
-      bottomNavigationBar: CustomBottomNavigationBar(),    
+      backgroundColor: Colors.grey[200],
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(85),
+        child:  CustomAppBar(
+          title: CustomText(method: CustomTextAppBar(text: 'Accueil',),),
+          appBar: AppBar(),
+      ),
+      ),
+     
+      body: SafeArea(
+        child: Center(
+          
+        ),
+       
+      ),
+
+
+       
     );
   }
 }

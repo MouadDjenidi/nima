@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:frino_icons/frino_icons.dart';
+import 'package:provider/provider.dart';
+import 'package:nima/constants/app_constants.dart';
+import 'package:nima/modules/providers/Bottom_Navigation_Bar_Provider.dart';
 
 
 class CustomBottomNavigationBar extends StatefulWidget {
@@ -10,51 +13,67 @@ class CustomBottomNavigationBar extends StatefulWidget {
 }
 
 class _CustomBottomNavigationBar extends State<CustomBottomNavigationBar> {
-   
-   int _selectedTabIndex = 0; 
-
-  _changeIndex(int index) {
-    setState(() {
-      _selectedTabIndex = index; 
-    }); 
-  }
-  
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<BottomNavigationBarProvider>(context);
     return Container(
-       margin: EdgeInsets.only(left: 2, right: 2 , bottom: 2,),
-       decoration: BoxDecoration(
-          boxShadow: <BoxShadow>[
-            BoxShadow(
-               color: Colors.grey.withOpacity(0.2),
-               spreadRadius: 5,
-               blurRadius: 15,
-               offset: Offset(0, 2),
-            ),
+      decoration: BoxDecoration(
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.2),
+            spreadRadius: 5,
+            blurRadius: 15,
+            offset: Offset(0, 2),
+          ),
+        ],
+      ),
+      child: Scaffold(
+        body: currentTab[provider.currentIndex],
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: provider.currentIndex,
+          onTap: (index) {
+            provider.currentIndex = index;
+          },
+          type: BottomNavigationBarType.fixed,
+          items: [
+            BottomNavigationBarItem(
+                activeIcon: Icon(
+                  FrinoIcons.f_home,
+                  color: activeIconColor,
+                ),
+                icon: Icon(FrinoIcons.f_home),
+                title: Text("Accueil")),
+            BottomNavigationBarItem(
+                activeIcon: Icon(
+                  FrinoIcons.f_shop,
+                  color: activeIconColor,
+                ),
+                icon: Icon(FrinoIcons.f_shop),
+                title: Text("Supérette")),
+            BottomNavigationBarItem(
+                activeIcon: Icon(
+                  FrinoIcons.f_mark,
+                  color: activeIconColor,
+                ),
+                icon: Icon(FrinoIcons.f_mark),
+                title: Text("Carte")),
+            BottomNavigationBarItem(
+                activeIcon: Icon(
+                  FrinoIcons.f_bulb,
+                  color: activeIconColor,
+                ),
+                icon: Icon(FrinoIcons.f_bulb),
+                title: Text("Offre")),
+            BottomNavigationBarItem(
+                activeIcon: Icon(
+                  FrinoIcons.f_bell,
+                  color: activeIconColor,
+                ),
+                icon: Icon(FrinoIcons.f_bell),
+                title: Text("Notification"))
           ],
         ),
-        child : ClipRRect(
-        
-        borderRadius: BorderRadius.only(
-          topRight: Radius.circular(40),
-          topLeft:  Radius.circular(40),
-          bottomLeft: Radius.circular(40), 
-          bottomRight:Radius.circular(40), 
-        ),
-        
-        child: BottomNavigationBar( 
-        currentIndex: _selectedTabIndex, 
-        onTap: _changeIndex, 
-        type: BottomNavigationBarType.fixed, 
-        items: [
-          BottomNavigationBarItem(icon: Icon(FrinoIcons.f_home), title: Text("Accueil") ), 
-          BottomNavigationBarItem(icon: Icon(FrinoIcons.f_shop), title: Text("Supérette")), 
-          BottomNavigationBarItem(icon: Icon(FrinoIcons.f_mark), title: Text("Carte")), 
-          BottomNavigationBarItem(icon: Icon(FrinoIcons.f_bulb), title: Text("Offre")),
-          BottomNavigationBarItem(icon: Icon(FrinoIcons.f_bell), title: Text("Notification")) 
-        ], 
       ),
-     ),
     );
   }
 }

@@ -14,10 +14,12 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^0.1.2
-  google_maps_place_picker: 2.0.0-nullsafety.3
   http: ^0.13.0+2
   frino_icons: ^1.0.1+4
   flutter_rating_bar: ^4.0.0
+  provider: ^5.0.0
+  google_maps_flutter: ^2.0.3
+  location: ^4.1.1
 
 dev_dependencies:
   flutter_test:

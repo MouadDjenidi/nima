@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'home_page.dart';
+import 'package:nima/Widgets/custom_bottom_navigation_bar.dart';
+import 'package:provider/provider.dart';
+import 'package:nima/modules/providers/Bottom_Navigation_Bar_Provider.dart';
 
 class MyApp extends StatelessWidget {
 
@@ -9,7 +11,14 @@ class MyApp extends StatelessWidget {
       title: 'nima',
       themeMode: ThemeMode.light,
       debugShowCheckedModeBanner: false,
-      home: MyHomePage(),
+     // onGenerateRoute: router.generateRoute,
+      //initialRoute: HomeViewRoute,
+       home: ChangeNotifierProvider<BottomNavigationBarProvider>(
+        child: CustomBottomNavigationBar(),
+        create: ( context) => BottomNavigationBarProvider(),
+      ),
     );
   }
+
+
 }

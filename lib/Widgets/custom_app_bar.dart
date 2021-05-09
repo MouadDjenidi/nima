@@ -1,34 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:nima/constants/app_constants.dart';
+
+import 'custom_text.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final Text title;
+  final CustomText title;
   final AppBar appBar;
-  final List<Widget> widgets;
-
-  const CustomAppBar({Key key, this.title, this.appBar, this.widgets})
+  const CustomAppBar({Key key, this.title, this.appBar})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return PreferredSize(
-      preferredSize: const Size.fromHeight(90),
-      child: ClipPath(
+    return ClipPath(
       clipper: CurvedClipper(),
       child: AppBar(
       title: title,
-      backgroundColor: appBarColor,
+      backgroundColor: Colors.white,
       actions: <Widget>[
             IconButton(
-              icon: Icon(Icons.search, color: Colors.white),
+              icon: Icon(Icons.search, color: Colors.blue[400]),
               onPressed: () {},
             )
           ],
-      leading: Icon(Icons.menu , color: Colors.white),
+      leading: Icon(Icons.menu , color: Colors.blue[400]),
       toolbarHeight: 60,
     ),
-    ),
-    ); 
+    );
   }
 
   @override
