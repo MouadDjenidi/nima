@@ -20,6 +20,8 @@ dependencies:
   provider: ^5.0.0
   google_maps_flutter: ^2.0.3
   location: ^4.1.1
+  geoflutterfire: ^2.0.0
+  cloud_firestore: ^0.9.0 
 
 dev_dependencies:
   flutter_test:
