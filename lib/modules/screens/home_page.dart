@@ -21,7 +21,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(85),
+        preferredSize: const Size.fromHeight(60),
         child:  CustomAppBar(
           title: CustomText(method: CustomTextAppBar(text: 'Accueil',),),
           appBar: AppBar(),

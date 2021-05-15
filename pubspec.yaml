@@ -20,6 +20,8 @@ dependencies:
   provider: ^5.0.0
   google_maps_flutter: ^2.0.3
   location: ^4.1.1
+  geolocator: ^7.0.3
+  shared_preferences: ^2.0.5
 
 dev_dependencies:
   flutter_test:
@@ -30,3 +32,4 @@ flutter:
   assets:
     - assets/langs/fr.json
     - assets/langs/ar.json
+    - assets/images/

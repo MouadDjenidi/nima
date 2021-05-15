@@ -11,7 +11,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return ClipPath(
-      clipper: CurvedClipper(),
+     // clipper: CurvedClipper(),
       child: AppBar(
       title: title,
       backgroundColor: Colors.white,
