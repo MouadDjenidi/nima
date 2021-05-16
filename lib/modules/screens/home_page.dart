@@ -23,6 +23,10 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
         child:  CustomAppBar(
+          leading: Icon(Icons.menu , color: Colors.blue[400]),
+          actionIcons: [
+            Icon(Icons.search, color: Colors.blue[400]),
+          ] ,
           title: CustomText(method: CustomTextAppBar(text: 'Accueil',),),
           appBar: AppBar(),
       ),

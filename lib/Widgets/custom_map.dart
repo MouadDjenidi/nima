@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
@@ -22,7 +20,6 @@ class _CustomMapState extends State<CustomMap> {
   List<LatLng> positions;
   BitmapDescriptor mapMarker;
   Location location = new Location();
-  //Double mapZoom = 16.0;
   String singlePin = 'assets/images/pin.png';
   String multiPin  = 'assets/images/iconfinder_map-marker_299087.png';
 

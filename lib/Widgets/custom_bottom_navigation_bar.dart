@@ -50,6 +50,15 @@ class _CustomBottomNavigationBar extends State<CustomBottomNavigationBar> {
                 ),
                 icon: Icon(FrinoIcons.f_shop),
                 title: Text("Supérette")),
+        //---------condition-----------        
+            isVendor == true ?   
+            BottomNavigationBarItem(
+                activeIcon: Icon(
+                  FrinoIcons.f_basket_2,
+                  color: activeIconColor,
+                ),
+                icon: Icon(FrinoIcons.f_basket_2),
+                title: Text("Produits")) :
             BottomNavigationBarItem(
                 activeIcon: Icon(
                   FrinoIcons.f_mark,
@@ -57,6 +66,7 @@ class _CustomBottomNavigationBar extends State<CustomBottomNavigationBar> {
                 ),
                 icon: Icon(FrinoIcons.f_mark),
                 title: Text("Carte")),
+        //-------- end codndition --------        
             BottomNavigationBarItem(
                 activeIcon: Icon(
                   FrinoIcons.f_bulb,

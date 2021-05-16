@@ -23,6 +23,7 @@ class CustomTextAppBar extends StatelessWidget {
       style: TextStyle(
            color: textAppBarColor,
            letterSpacing: .5,
+           fontSize: 18,
       ),
            
     );

@@ -5,7 +5,11 @@ import 'custom_text.dart';
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final CustomText title;
   final AppBar appBar;
-  const CustomAppBar({Key key, this.title, this.appBar})
+  //final List<Icon> actionIcon;
+  final List<Widget> actionIcons;
+  final Object leading;
+  
+  const CustomAppBar({Key key, this.title, this.appBar,this.actionIcons,this.leading})
       : super(key: key);
 
   @override
@@ -15,13 +19,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       child: AppBar(
       title: title,
       backgroundColor: Colors.white,
-      actions: <Widget>[
-            IconButton(
-              icon: Icon(Icons.search, color: Colors.blue[400]),
-              onPressed: () {},
-            )
-          ],
-      leading: Icon(Icons.menu , color: Colors.blue[400]),
+      actions: actionIcons,
+      leading: leading,
       toolbarHeight: 60,
     ),
     );
