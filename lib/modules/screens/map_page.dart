@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
+import 'package:rxdart/rxdart.dart';
+
+
 
 
 class MyMapPage extends StatelessWidget {
@@ -34,31 +37,35 @@ class NimaMapState extends State<NimaMap> {
   GoogleMapController mapController;
   Firestore firestore = Firestore.instance;
   Geoflutterfire geo = Geoflutterfire();
-  List<DocumentSnapshot> stream ;
-  double radius = 50;
-  CameraPosition _initialLocation =  CameraPosition(target: LatLng(41.40338, 2.17403),zoom : 15);
-  CameraPosition _currentLocation =CameraPosition(target: LatLng(0, 0),zoom : 15);
+  StreamSubscription stream ;
+ 
+  BehaviorSubject<double> radius = BehaviorSubject(seedValue: 50.0);
+ 
+  CameraPosition _initialLocation =  CameraPosition(target: LatLng(36.120128,6.359548),zoom : 8);
+  Location location = new Location();
+  LocationData _locationData;
+
  
   final Set<Marker> _markers = {};
-
+ 
    @override
    build(context) {
     return Scaffold(
       body: 
         GoogleMap(
           initialCameraPosition: _initialLocation,
-         // onMapCreated: _onMapCreated,
+          onMapCreated: _onMapCreated,
           myLocationEnabled: true, // Add little blue dot for device location, requires permission from user
           mapType: MapType.normal,  
           markers: _markers,
-          onCameraMove: (CameraPosition position) { 
+         /* onCameraMove: (CameraPosition position) { 
             _currentLocation=position;
-          },       
+          }, */       
         ),
       
         floatingActionButton : FloatingActionButton(
                 child: Icon(Icons.pin_drop_outlined),
-                onPressed : () => _addGeoPoint(),
+              //  onPressed : () => _addGeoPoint(),
         ),
       
     );
@@ -67,6 +74,7 @@ class NimaMapState extends State<NimaMap> {
 
    void _onMapCreated(GoogleMapController _cntlr)
   {
+    _startQuery();
     setState(() {
       mapController = _cntlr;
     });   
@@ -87,48 +95,52 @@ class NimaMapState extends State<NimaMap> {
 
   Future<DocumentReference> _addGeoPoint() {
    
-  GeoFirePoint point = geo.point(latitude: 36.350527, longitude: 6.648496);
+  GeoFirePoint point = geo.point(latitude: 36.158944 , longitude: 5.684335);
   return firestore.collection('locations').add({ 
     'position': point.data,
-    'name': 'Yay I can be queried!' 
+    'name': 'el eulma' 
   });
   
 }
 
- _startQuery() async {
+ _startQuery() async{
     // Get users location
-
     // Make a referece to firestore
     var ref = firestore.collection('locations');
-    GeoFirePoint center = geo.point(latitude: 36.350527, longitude: 6.648496);
+    _locationData = await location.getLocation();
+    GeoFirePoint center = geo.point(latitude: 36.120128 , longitude: 6.359548);
 
     // subscribe to query
     stream = 
-       geo.collection(collectionRef: ref).within(
+       radius.switchMap((rad) {
+      return geo.collection(collectionRef: ref).within(
         center: center, 
-        radius: radius, 
+        radius: rad, 
         field: 'position', 
         strictMode: true
-      ) as List<DocumentSnapshot>;
-    _updateMarkers(stream);  
+      );
+    }).listen(_updateMarkers);
+      
+  //  _updateMarkers(stream);  
    
   }
 
   void _updateMarkers(List<DocumentSnapshot> documentList) {
     
-   
+   // print(documentList.elementAt(0).data.toString());
     documentList.forEach((DocumentSnapshot document) {
         GeoPoint pos = document.data['position']['geopoint'];
         double distance = document.data['distance'];
         var marker = Marker(
+          markerId: MarkerId(document.data['name']),
           position: LatLng(pos.latitude, pos.longitude),
           icon: BitmapDescriptor.defaultMarker,
-          infoWindow: InfoWindow(title:'$distance kilometers from query center'), markerId: null
+          infoWindow: InfoWindow(title:'$distance kilometers from your location')
         );
-
-
+     setState(() {
         _markers.add(marker);
+     });
     });
-  }
+}
 
 }
