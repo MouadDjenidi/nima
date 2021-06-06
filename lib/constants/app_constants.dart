@@ -5,6 +5,8 @@ import 'package:nima/modules/screens/home_page.dart';
 import 'package:nima/modules/screens/map_page.dart';
 import 'package:nima/modules/screens/test_map.dart';
 import 'package:nima/modules/screens/vendor_promo_products.dart';
+import 'package:nima/modules/screens/login.dart';
+
 
 
 final bool isVendor   = true;
@@ -19,7 +21,7 @@ final Color iconsColor      = Colors.blue[400];
     TestMap() ,
     isVendor == true ? VendorPromoProducts() : MyMapPage(),
     MyMapPage(),
-    MyMapPage(),
+    LoginPage(),
   ];
 
  final int defualtIndex = 2;

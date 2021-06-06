@@ -18,7 +18,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
      // clipper: CurvedClipper(),
       child: AppBar(
       title: title,
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.grey[100],
       actions: actionIcons,
       leading: leading,
       toolbarHeight: 60,
