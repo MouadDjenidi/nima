@@ -72,29 +72,8 @@ class _VendorPromoProductsState extends State<VendorPromoProducts> {
                 size: 35,
               ),
               onPressed: () {
-                Navigator.of(context).push(_createProductPgae());
-                //    Navigator.push(context,MaterialPageRoute(builder: (context) => AddProoduct()),);
-                /* showModalBottomSheet<void>(
-                  context: context,
-                  isScrollControlled: true,
-                  builder: (BuildContext context) {
-                    return Container(
-                      height: MediaQuery.of(context).size.height * 0.75,
-                      decoration: new BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: new BorderRadius.only(
-                          topLeft: const Radius.circular(25.0),
-                          topRight: const Radius.circular(25.0),
-                        ),
-                      ),
-                      child: Center(
-                        
-                        child: AddProoduct(),
-                      ),
-                    );
-                  },
-                );*/
-              },
+               Navigator.of(context).push(_createProductPgae());
+               },
             ),
             IconButton(
               icon: Icon(
@@ -208,13 +187,20 @@ class _VendorPromoProductsState extends State<VendorPromoProducts> {
                             leading: Icon(FrinoIcons.f_shop),
                             trailing: Icon(FrinoIcons.f_mark,
                                 color: Colors.blue[400], size: 20),
-                            title: Text(
+                            title: Container(
+                              color:Colors.black,
+                              child:  Text(
                               snapshot.data[index].shopname,
                               style: TextStyle(
                                   fontSize: 17.0,
                                   fontWeight: FontWeight.w600,
                                   color: Colors.blue[400]),
                             ),
+                            ),
+                            
+                            
+                           
+
                             subtitle: Column(children: <Widget>[
                               Row(children: <Widget>[
                                 Text(

@@ -16,4 +16,17 @@ class CustomSnackBar{
     );
   }
 
+   void snackBarWarning(BuildContext context,String message, Color color) {
+    ScaffoldMessenger.of(context).showSnackBar(setSnackBar(
+      color,
+      Icon(
+        Icons.warning,
+        color: Colors.white,
+      ),
+      Text(message),
+    ));
+   }
+
+   
+
 }

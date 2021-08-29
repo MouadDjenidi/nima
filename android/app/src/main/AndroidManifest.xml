@@ -5,10 +5,11 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
    <application
         android:label="nima"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        android:usesCleartextTraffic="true">
 
         <meta-data android:name="com.google.android.geo.API_KEY"
-                   android:value="AIzaSyCKDrA7UJbk1t0iK7C9J5sd1Hl8WWQ-25U"/>
+                   android:value="AIzaSyCgfPoBQpIQKT32gd2H6GT3c8bvANjLJX0"/>
                    
         <activity
             android:name=".MainActivity"

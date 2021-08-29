@@ -1,25 +1,31 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:nima/Widgets/custom_bottom_navigation_bar.dart';
+import 'package:nima/core/auth/Login/authentication_service.dart';
+import 'package:nima/modules/screens/welcome_screen.dart';
 import 'package:provider/provider.dart';
-import 'package:nima/modules/providers/Bottom_Navigation_Bar_Provider.dart';
-
 
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'nima',
-      themeMode: ThemeMode.light,
-      debugShowCheckedModeBanner: false,
-     // onGenerateRoute: router.generateRoute,
-      //initialRoute: HomeViewRoute,
-       home: ChangeNotifierProvider<BottomNavigationBarProvider>(
-        child: CustomBottomNavigationBar(),
-        create: ( context) => BottomNavigationBarProvider(),
+    return MultiProvider(
+      providers: [
+        Provider<AuthenticationService>(
+          create: (_) => AuthenticationService(FirebaseAuth.instance),
+        ),
+        StreamProvider(
+          create: (context) => context.read<AuthenticationService>().authStateChanges,
+        ),
+        StreamProvider(
+          create: (context) => context.read<AuthenticationService>().user,
+        ),
+      ],
+      child: MaterialApp(
+        title: 'nima',
+        themeMode: ThemeMode.light,
+        debugShowCheckedModeBanner: false,
+        home: WelcomeScreen(),
       ),
     );
   }
 }
-
 
